@@ -14,9 +14,9 @@ use Auth;
 use Session;
 use DB;
 use Hash;
+use Newsletter;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Spatie\Newsletter\Newsletter;
 
 class FrontendController extends Controller
 {
@@ -407,6 +407,7 @@ class FrontendController extends Controller
     }
 
     public function subscribe(Request $request){
+
         if(! Newsletter::isSubscribed($request->email)){
                 Newsletter::subscribePending($request->email);
                 if(Newsletter::lastActionSucceeded()){
